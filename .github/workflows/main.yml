@@ -24,6 +24,7 @@ jobs:
       uses: aquasecurity/trivy-action@0.12.0
       with: 
         scan-type: 'fs'
-        output: 'trivy-results.txt'
+        format: 'table'
+        output: 'trivy_result.txt'
 
   
