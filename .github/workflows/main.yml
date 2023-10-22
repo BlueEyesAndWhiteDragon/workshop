@@ -26,11 +26,10 @@ jobs:
         scan-type: 'fs'
         format: 'table'
         output: 'trivy_result.txt'
-        
-    - name: Upload Trivy scan result
-      uses: actions/upload-artifact@v2
-      with:
-          name: trivy-result
-          path: trivy_result.txt
+   
+    - name: Send Trivy scan result to Slack   
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$(cat trivy_result.txt)\"}" https://app.slack.com/client/T05QCU5S7T9/C05QWSVMH0S
+      
       
   
