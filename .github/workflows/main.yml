@@ -26,5 +26,11 @@ jobs:
         scan-type: 'fs'
         format: 'table'
         output: 'trivy_result.txt'
-
+        
+    - name: Upload Trivy scan result
+      uses: actions/upload-artifact@v2
+      with:
+          name: trivy-result
+          path: trivy_result.txt
+      
   
