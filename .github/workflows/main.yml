@@ -1,15 +1,14 @@
-name: My first workflow
-on: [push]
-jobs: 
-    hello_world:
-        runs-on: ubuntu-latest
+name: Welcome Workflow
 
+on: push
 
+jobs:
+  welcome_job:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Echo current branch
-              run: echo "$(date):Current branch is ${{ github.ref_name}}"
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-            - name: Checkout source
-              uses: actions/checkout@v2
-
+    - name: Send welcome message
+      run: echo "Thank you for pushing to this repository!"
