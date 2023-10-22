@@ -16,3 +16,7 @@ jobs:
 
     - name: Send welcome message
       run: echo "Thank you for pushing to this repository!"
+
+    - name: Checkout
+      uses: actions/checkout@v4.1.1
+  
