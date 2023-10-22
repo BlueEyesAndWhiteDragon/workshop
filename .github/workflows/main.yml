@@ -20,3 +20,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4.1.1
   
+    - name: Aqua Security Trivy
+      uses: aquasecurity/trivy-action@0.12.0
+  
