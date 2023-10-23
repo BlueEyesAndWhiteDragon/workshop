@@ -26,13 +26,10 @@ jobs:
        output: 'trivy-report.txt'
         
     - name: Send Trivy report to Slack
-      
       uses: 8398a7/action-slack@v3
       with:
-        status: ${{ job.status }}
-        fields: repo,commit,author,action,eventName,ref,workflow,job,executor
-        file: trivy-report.txt
-        webhook_url: ${{ secrets.TEST }}
+       status: ${{ job.status }}
+       fields: repo,commit,author,action,eventName,ref,workflow,job,executor
 
 
 
