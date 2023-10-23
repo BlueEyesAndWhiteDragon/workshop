@@ -20,25 +20,26 @@ jobs:
        format: 'table'
        output: 'trivy-report.txt'
         
-    - name: Read Trivy report
-      id: read_report
-      run: |
-        content=$(cat trivy-report.txt)
-        content="${content//'%'/'%25'}"
-        content="${content//$'\n'/'%0A'}"
-        content="${content//$'\r'/'%0D'}"
-        echo "::set-output name=content::$content"
-      shell: bash
+    
         
-    - name: Send Trivy report to Slack
-      uses: 8398a7/action-slack@v3
+    - name: Send custom JSON data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.24.0
       with:
-        status: ${{ job.status }}
-        fields: repo,commit,author,action,eventName,ref,workflow,job,executor
-        text: |
-          GitHub Action build result: ${{ job.status }}
-          ${{ github.event.pull_request.html_url || github.event.head_commit.url }}
-          Trivy Report:
-          ${{ steps.read_report.outputs.content }}
-      env:
+    # For posting a rich message using Block Kit
+        payload: |
+          {
+            "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+            "blocks": [
+              {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+            }
+          }
+            ]
+          }
+    env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
