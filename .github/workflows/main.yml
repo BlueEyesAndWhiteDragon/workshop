@@ -40,19 +40,10 @@ jobs:
       with:
    
         payload: |
-          {
-            
-            "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ trivy-report.txt }}",
-            "blocks": [
-              {
-            "type": "section",
-            "text": {
-              "type": "mrkdwn",
-              "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ trivy-report.txt }}"
-            }
-          }
-            ]
-          }
+         {
+           "text": "Test message from GitHub Actions"
+         }
+
     env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
