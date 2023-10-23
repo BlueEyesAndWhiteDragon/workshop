@@ -41,6 +41,7 @@ jobs:
    
         payload: |
           {
+            "text": "Test message from GitHub Actions"
             "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ steps.read_table.outputs.table }}",
             "blocks": [
               {
