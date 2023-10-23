@@ -20,7 +20,10 @@ jobs:
        scan-type: 'fs'
        format: 'table'
        output: 'trivy-report.txt'
-        
+
+    - name: Print scan results
+      run: cat trivy-report.txt
+
 
     - name: Read scan table
       id: read_table
