@@ -41,14 +41,14 @@ jobs:
    
         payload: |
           {
-            "text": "Test message from GitHub Actions"
-            "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ steps.read_table.outputs.table }}",
+            
+            "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ trivy-report.txt }}",
             "blocks": [
               {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ steps.read_table.outputs.table }}"
+              "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ trivy-report.txt }}"
             }
           }
             ]
