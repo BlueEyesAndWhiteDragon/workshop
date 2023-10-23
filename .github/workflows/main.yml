@@ -15,27 +15,36 @@ jobs:
   
     - name: Aqua Security Trivy
       uses: aquasecurity/trivy-action@0.12.0
+      id: scan
       with:
        scan-type: 'fs'
        format: 'table'
        output: 'trivy-report.txt'
         
+
+    - name: Read scan table
+      id: read_table
+      run: |
+        content=$(cat trivy-report.txt) 
+        echo "::set-output name=table::$content"
+      shell: bash
+
     
         
     - name: Send custom JSON data to Slack workflow
       id: slack
       uses: slackapi/slack-github-action@v1.24.0
       with:
-    # For posting a rich message using Block Kit
+   
         payload: |
           {
-            "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+            "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ steps.read_table.outputs.table }}",
             "blocks": [
               {
             "type": "section",
             "text": {
               "type": "mrkdwn",
-              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+              "text": "GitHub Action build result: ${{ job.status }}\n\nScan Results:\n${{ steps.read_table.outputs.table }}"
             }
           }
             ]
