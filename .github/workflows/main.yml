@@ -32,7 +32,7 @@ jobs:
         status: ${{ job.status }}
         fields: repo,commit,author,action,eventName,ref,workflow,job,executor
         file: trivy-report.txt
-        webhook_url: ${{ secrets.test }}
+        webhook_url: ${{ secrets.TEST}}
 
 
 
