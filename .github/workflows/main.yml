@@ -1,21 +1,19 @@
-name: Welcome Workflow
+name: Workflow
 
 on:
   push:
     branches:
       - 'v[0-9]+.[0-9]+'
-
-
+      
 jobs:
-  welcome_job:
+  my_job:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Send welcome message
-      run: echo "Thank you for pushing to this repository!"
+   
 
     - name: Checkout
       uses: actions/checkout@v4.1.1
@@ -24,12 +22,9 @@ jobs:
       uses: aquasecurity/trivy-action@0.12.0
       with: 
         scan-type: 'fs'
-        format: 'table'
-        output: 'tz阿瓦454.txt'
+        
    
-    - name: Send Trivy scan result to Slack   
-      run: |
-        curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$(cat trivy_result.txt)\"}" https://app.slack.com/client/T0628ES545R/C0625KW8BJR?geocode=zh-sg
+
       
       
   
