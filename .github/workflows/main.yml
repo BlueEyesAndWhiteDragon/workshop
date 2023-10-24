@@ -63,7 +63,7 @@ jobs:
     - name: Sign image with a key
       run: |
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
-          env:
+      env:
           TAGS: blueeyesandwhitedragon/test:${{github.sha}}
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGNKEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGNPASSWORD }}
