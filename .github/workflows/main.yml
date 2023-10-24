@@ -21,29 +21,20 @@ jobs:
        format: 'table'
        output: 'trivy-report.txt'
 
-    - name: Print scan results
-      run: cat trivy-report.txt
-
-
-    - name: Read scan table
-      id: read_table
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build an image from Dockerfile
       run: |
-        content=$(cat trivy-report.txt) 
-        echo "::set-output name=table::$content"
-      shell: bash
-
-    
-        
-    - name: Send custom JSON data to Slack workflow
-      id: slack
-      uses: slackapi/slack-github-action@v1.24.0
+          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
       with:
-   
-        payload: |
-         {
-           "text": "Test message from GitHub Actions"
-         }
-
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
     env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
