@@ -39,6 +39,8 @@ jobs:
   #      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   #      SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
 
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3.1.2
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -54,6 +56,15 @@ jobs:
     -
         name: Build and push
         uses: docker/build-push-action@v5
+        id: build-and-push
         with:
           push: true
           tags: blueeyesandwhitedragon/test:${{github.sha}}
+    - name: Sign image with a key
+      run: |
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
+          env:
+          TAGS: blueeyesandwhitedragon/test:${{github.sha}}
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGNKEY }}
+          COSIGN_PASSWORD: ${{ secrets.Yunitongzai12138 }}
+          DIGEST: ${{ steps.build-and-push.outputs.digest }}
