@@ -66,5 +66,5 @@ jobs:
           env:
           TAGS: blueeyesandwhitedragon/test:${{github.sha}}
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGNKEY }}
-          COSIGN_PASSWORD: ${{ secrets.Yunitongzai12138 }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGNPASSWORD }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
