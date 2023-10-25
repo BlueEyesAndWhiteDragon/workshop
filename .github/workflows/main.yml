@@ -27,9 +27,17 @@ jobs:
           ignore-unfixed: false
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-      #env:
-       #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-       #   SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
+    - name: send
+      uses: MeilCli/slack-upload-file@v3
+      with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'text.txt'
+          title: 'title of file'
+          initial_comment: 'post by slack-upload-file'
+          # thread_ts: 'option'
 
     - name: Install Cosign
       uses: sigstore/cosign-installer@v3.1.2
