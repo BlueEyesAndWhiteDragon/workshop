@@ -48,7 +48,7 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           content: 'file content'
-          file_type: 'text'
+          
           file_name: 'text.txt'
           title: 'title of file'
           initial_comment: 'post by slack-upload-file'
