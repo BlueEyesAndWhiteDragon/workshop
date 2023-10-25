@@ -27,18 +27,22 @@ jobs:
           ignore-unfixed: false
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
-    - name: send
-      uses: MeilCli/slack-upload-file@v3
-      with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          content: 'file content'
-          file_type: 'text'
-          file_name: 'text.txt'
-          title: 'title of file'
-          initial_comment: 'post by slack-upload-file'
-          # thread_ts: 'option'
+   
+      
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: general
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_TITLE: Post Title
+        SLACK_USERNAME: rtCamp
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
+
+        
     - name: Install Cosign
       uses: sigstore/cosign-installer@v3.1.2
 
