@@ -13,31 +13,30 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
   
-    - name: Aqua Security Trivy
-      uses: aquasecurity/trivy-action@0.12.0
-      id: scan
-      with:
-       scan-type: 'fs'
-       format: 'table'
-       output: 'trivy-report.txt'
+  #  - name: Aqua Security Trivy
+   #    id: scan
+  #    with:
+   #    scan-type: 'fs'
+   #    format: 'table'
+   #    output: 'trivy-report.txt'
 
   #  - name: Checkout code
  #     uses: actions/checkout@v2
     - name: Build an image from Dockerfile
       run: |
          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-#    - name: Run Trivy vulnerability scanner
- #     uses: aquasecurity/trivy-action@master
- #     with:
-   #       image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-  #       format: 'table'
-   #       exit-code: '1'
-    #      ignore-unfixed: false
-   #       vuln-type: 'os,library'
-   #       severity: 'CRITICAL,HIGH'
-  #  env:
-  #      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-  #      SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: false
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK 
 
     - name: Install Cosign
       uses: sigstore/cosign-installer@v3.1.2
