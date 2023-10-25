@@ -46,7 +46,7 @@ jobs:
       if: ${{ failure() }} 
       with:
           slack_token: ${{ secrets.TOKEN }}
-          channel_id: ${{ secrets.CHANNEL }}
+         # channel_id: ${{ secrets.CHANNEL }}
           content: 'file content'
           
           file_name: 'text.txt'
