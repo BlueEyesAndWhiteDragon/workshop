@@ -26,11 +26,12 @@ jobs:
           exit-code: '1'
           ignore-unfixed: false
           vuln-type: 'os,library'
-          severity: 'CRITICAL,LOW'
+          severity: 'CRITICAL,HIGH'
    
       
     - uses: actions/checkout@v2
     - name: Slack Notification
+      if: ${{ failure() }} 
       uses: rtCamp/action-slack-notify@v2
       env:
         
@@ -40,6 +41,18 @@ jobs:
         SLACK_TITLE: Post Title
         SLACK_USERNAME: rtCamp
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+   
+    - uses: MeilCli/slack-upload-file@v3
+      if: ${{ failure() }} 
+      with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'text.txt'
+          title: 'title of file'
+          initial_comment: 'post by slack-upload-file'
+         
 
 
         
