@@ -36,7 +36,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         
-        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: 'Post Content :rocket:'
         SLACK_TITLE: Post Title
@@ -47,7 +47,7 @@ jobs:
       if: ${{ failure() }} 
       with:
           slack_token: ${{ secrets.TOKEN }}
-         # channel_id: ${{ secrets.CHANNEL }}
+          channel_id: ${{ secrets.CHANNEL }}
           content: 'file content'
           
           file_name: 'text.txt'
