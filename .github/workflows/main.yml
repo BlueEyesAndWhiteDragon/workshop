@@ -27,12 +27,14 @@ jobs:
     - name: Build an image from Dockerfile
       run: |
          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+         
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       id: table
       with:
-          image-ref: 'go.mod (gomod)'
+          image-ref: 'docker build -t docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'table'
+          scan-type: 'fs'
           output: 'table.txt'
           exit-code: '1'
           ignore-unfixed: false
