@@ -17,10 +17,10 @@ jobs:
 
 
 
-   # - name: Create a table.txt
-    #  run: |
-     #   mkdir -p docs
-      #  echo "" > docs/table.txt
+    - name: Create a table.txt
+      run: |
+        mkdir -p docs
+        echo "" > docs/table.txt
       
 
       
