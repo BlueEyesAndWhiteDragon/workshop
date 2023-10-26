@@ -59,7 +59,7 @@ jobs:
          Name: ${{ secrets.NAME }}
          Matriculation：A0287263W
          Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
-         Git: <https://github.com/${{ github.BlueEyesandWhiteDragon.workflow }}|${{ github.repository }}>
+         Git: <https://github.com/${{ github.repository }}|${{ github.repository }}>
 
          Image:
         
