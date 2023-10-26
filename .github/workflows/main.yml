@@ -60,8 +60,7 @@ jobs:
          Matriculation：A0287263W
          Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
          Git: ${{ secrets.GIT }}
-
-         Image:
+         Image: ${{ secrets.DOCKER }}
         
         SLACK_TITLE: Image build and signed
         SLACK_USERNAME: CICD
