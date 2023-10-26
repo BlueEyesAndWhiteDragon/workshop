@@ -21,15 +21,22 @@ jobs:
          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
+      
       with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
           format: 'table'
-          id: table
+          
           exit-code: '1'
           ignore-unfixed: false
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
    
+    - name: Save Trivy output to file
+      if: ${{ failure() }}   
+      run: |
+       echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
+
+
       
     
     - name: Slack Notification
@@ -39,9 +46,15 @@ jobs:
         
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: 'Post Content :rocket:'
-        SLACK_TITLE: Post Title
-        SLACK_USERNAME: ZHANG SIBO
+        SLACK_MESSAGE: |
+         Name:ZhangSibo
+         Matriculation：A0287263W
+         Email:E1285209@u.nus.edu
+         Git:
+         Image:
+        
+        SLACK_TITLE: Image build and signed
+        SLACK_USERNAME: CICD
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
    
     - uses: MeilCli/slack-upload-file@v3
@@ -50,8 +63,8 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           content: table
+          file_path: 'docs/table.txt'
           
-          file_name: 'text.txt'
           title: 'table'
           initial_comment: 'post by slack-upload-file'
          
