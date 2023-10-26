@@ -70,7 +70,7 @@ jobs:
       with:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
-          content: table
+          
           file_path: 'docs/table.txt'
           
           title: 'table'
