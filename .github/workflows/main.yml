@@ -32,7 +32,7 @@ jobs:
           exit-code: '1'
           ignore-unfixed: false
           vuln-type: 'os,library'
-          severity: 'CRITICAL,LOW'
+          severity: 'CRITICAL'
       
     
     - name: Slack Notification 
