@@ -39,11 +39,9 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-    - name: Set Trivy Scan Results as Output
-      if: ${{ failure() }}  
-      run: |
-        trivy_scan_results="$(trivy --format table --exit-code 1 --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH docker.io/my-organization/my-app:${{ github.sha }})"
-        echo "::set-output name=trivy_scan_results::$trivy_scan_results"
+    - name: Move Trivy output to docs directory
+      if: ${{ failure() }}
+      run: mv table.txt docs/
 
 
    
@@ -88,17 +86,7 @@ jobs:
           initial_comment: 'post by slack-upload-file'
          
 
-    - uses: MeilCli/slack-upload-file@v3
-      if: ${{ failure() }}
-      with:
-          slack_token: ${{ secrets.TOKEN }}
-          channel_id: ${{ secrets.CHANNEL }}
-          content: 'file content'
-          file_path: './docs/table.txt'
-          file_type: 'plain'
-          file_name: 'table.txt'
-          title: 'title of file'
-          initial_comment: 'post by slack-upload-file'
+    
          
 
         
