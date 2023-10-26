@@ -47,10 +47,10 @@ jobs:
 
 
    
-    - name: Save Trivy output to file
-      if: ${{ failure() }}   
-      run: |
-       echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
+    #- name: Save Trivy output to file
+     # if: ${{ failure() }}   
+      #run: |
+       #echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
 
     - name: Print the content of the file
       if: ${{ failure() }}
