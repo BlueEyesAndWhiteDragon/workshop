@@ -1,4 +1,4 @@
-name: Workflow
+name: CICD
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'v[0-9]+.[0-9]+'
       
 jobs:
-  my_job:
+  CICD:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '#NORUN')"
     steps:
@@ -17,10 +17,10 @@ jobs:
 
 
 
-    - name: Create a table
-      run: #|
+   # - name: Create a table.txt
+    #  run: |
      #   mkdir -p docs
-        echo "" > docs/table.txt
+      #  echo "" > docs/table.txt
       
 
       
@@ -41,7 +41,7 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-    - name: Move Trivy output to docs directory
+    - name: Move to table
       if: ${{ failure() }}
       run: mv table.txt docs/
 
@@ -49,9 +49,9 @@ jobs:
    
    
 
-    - name: Print the content of the file
-      if: ${{ failure() }}
-      run: cat docs/table.txt
+#    - name: Print the content of the file
+ #     if: ${{ failure() }}
+  #    run: cat docs/table.txt
 
       
     
