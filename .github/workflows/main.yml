@@ -79,6 +79,17 @@ jobs:
           initial_comment: 'post by slack-upload-file'
          
 
+    - uses: MeilCli/slack-upload-file@v3
+      with:
+          slack_token: ${{ secrets.TOKEN }}
+          channel_id: ${{ secrets.CHANNEL }}
+          content: 'file content'
+          file_path: './docs/table.log'
+          file_type: 'log'
+          file_name: 'table.log'
+          title: 'title of file'
+          initial_comment: 'post by slack-upload-file'
+          # thread_ts: 'option'
 
         
     - name: Install Cosign
