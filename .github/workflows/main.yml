@@ -47,6 +47,13 @@ jobs:
     if: "!contains(github.event.head_commit.message, '#NORUN')"
     steps:
 
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check
+      run: |
+        mkdir -p docs
+        
     - name: Build an image from Dockerfile
       run: |
        docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
