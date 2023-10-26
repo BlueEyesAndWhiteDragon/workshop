@@ -20,7 +20,7 @@ jobs:
     - name: Create a table.txt
       run: |
         mkdir -p docs
-        echo "" > docs/table.txt
+   #     echo "" >> docs/table.txt
       
 
       
@@ -49,9 +49,7 @@ jobs:
    
    
 
-#    - name: Print the content of the file
- #     if: ${{ failure() }}
-  #    run: cat docs/table.txt
+
 
       
     
@@ -63,7 +61,7 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: |
-         Name:ZhangSibo
+         Name: ${{ secrets.NAME }}
          Matriculation：A0287263W
          Email:E1285209@u.nus.edu
          Git:
