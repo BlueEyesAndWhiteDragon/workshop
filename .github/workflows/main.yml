@@ -58,8 +58,9 @@ jobs:
         SLACK_MESSAGE: |
          Name: ${{ secrets.NAME }}
          Matriculation：A0287263W
-         Email:E1285209@u.nus.edu
-         Git:
+         Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
+         Git:SLACK_MESSAGE: |Repository: <https://github.com/${{ github.repository }}|${{ github.repository }}>
+
          Image:
         
         SLACK_TITLE: Image build and signed
