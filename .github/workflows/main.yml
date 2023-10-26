@@ -18,8 +18,8 @@ jobs:
 
 
     - name: Create a table
-      run: |
-        mkdir -p docs
+      run: #|
+     #   mkdir -p docs
         echo "" > docs/table.txt
       
 
