@@ -20,7 +20,7 @@ jobs:
     - name: Create docs directory and save table
       run: |
             mkdir -p docs
-            echo "" > docs/table.txt
+            echo "" > docs/table.log
       
 
       
@@ -42,7 +42,7 @@ jobs:
     - name: Save Trivy output to file
       if: ${{ failure() }}   
       run: |
-       echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
+       echo "${{ steps.table.outputs.stdout }}" > docs/table.log
 
 
       
@@ -71,9 +71,9 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           
-          file_path: 'docs/table.txt'
+          file_path: 'docs/table.log'
           
-          title: 'table'
+          title: 'ZHANG SIBO'
           initial_comment: 'post by slack-upload-file'
          
 
