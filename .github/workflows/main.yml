@@ -17,7 +17,7 @@ jobs:
 
 
 
-    - name: Create docs directory and save table
+    - name: Create a table
       run: |
             mkdir -p docs
             echo "" > docs/table.txt
@@ -84,8 +84,7 @@ jobs:
           
           file_path: 'docs/table.txt'
           
-          title: 'ZHANG SIBO'
-          initial_comment: 'post by slack-upload-file'
+          initial_comment: 'post by ZHANGSIBO'
          
 
     
