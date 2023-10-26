@@ -6,7 +6,7 @@ on:
       - 'v[0-9]+.[0-9]+'
       
 jobs:
-  CICD:
+  CICD1:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '#NORUN')"
     steps:
@@ -40,6 +40,34 @@ jobs:
           ignore-unfixed: false
           vuln-type: 'os,library'
           severity: 'CRITICAL,LOW'
+
+
+  CICD2:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '#NORUN')"
+    steps:
+
+    - name: Build an image from Dockerfile
+      run: |
+       docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+         
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      id: table
+      with:
+          image-ref: 'docker build -t docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          scan-type: 'fs'
+          output: 'table.txt'
+          exit-code: '1'
+          ignore-unfixed: false
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+
+
+
+
 
     - name: Move table
       if: ${{ failure() }}
