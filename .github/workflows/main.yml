@@ -20,7 +20,7 @@ jobs:
     - name: Create docs directory and save table
       run: |
             mkdir -p docs
-            echo "" > docs/table.log
+            echo "" > docs/table.txt
       
 
       
@@ -73,7 +73,7 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           
-          file_path: 'docs/table.log'
+          file_path: 'docs/table.txt'
           
           title: 'ZHANG SIBO'
           initial_comment: 'post by slack-upload-file'
@@ -85,9 +85,9 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           content: 'file content'
-          file_path: './docs/table.log'
-          file_type: 'log'
-          file_name: 'table.log'
+          file_path: './docs/table.txt'
+          file_type: 'plain'
+          file_name: 'table.txt'
           title: 'title of file'
           initial_comment: 'post by slack-upload-file'
          
