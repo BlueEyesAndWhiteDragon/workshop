@@ -138,13 +138,9 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: |
-         Name: ZHANGSIBO
-         Matriculation：A0287263W
-         Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
-         Git: ${{ secrets.GIT }}
-         Image: ${{ secrets.DOCKER }}
+         failed trivy scan, see uploaded report
         
-        SLACK_TITLE: Image build and signed
+        SLACK_TITLE: Scan filed - ZHANGSIBO
         SLACK_USERNAME: CICD
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
    
@@ -154,5 +150,5 @@ jobs:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
           file_path: 'docs/table.txt'
-          initial_comment: 'post by ZHANGSIBO'
+          initial_comment: 'Scan report by ZHANGSIBO'
          
