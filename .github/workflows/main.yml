@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+   
   
     - name: Checkout code
       uses: actions/checkout@v2
+
+      
     - name: Build an image from Dockerfile
       run: |
          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
@@ -29,7 +30,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
    
       
-    - uses: actions/checkout@v2
+    
     - name: Slack Notification
       if: ${{ failure() }} 
       uses: rtCamp/action-slack-notify@v2
