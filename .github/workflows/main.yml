@@ -31,7 +31,7 @@ jobs:
       uses: aquasecurity/trivy-action@master
       id: table
       with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          image-ref: 'go.mod (gomod)'
           format: 'table'
           output: 'table.txt'
           exit-code: '1'
