@@ -80,6 +80,7 @@ jobs:
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
       env:
           TAGS: blueeyesandwhitedragon/test:${{github.sha}}
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGNKEY }}
 
 
 
