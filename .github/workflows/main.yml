@@ -153,8 +153,6 @@ jobs:
       with:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
-          
           file_path: 'docs/table.txt'
-          
           initial_comment: 'post by ZHANGSIBO'
          
