@@ -42,10 +42,10 @@ jobs:
     - name: Save Trivy output to file
       if: ${{ failure() }}   
       run: |
-       echo "${{ steps.table.outputs.stdout }}" > docs/table.log
+       echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
 
     - name: Print the content of the file
-      run: cat docs/table.log
+      run: cat docs/table.txt
 
       
     
@@ -80,6 +80,7 @@ jobs:
          
 
     - uses: MeilCli/slack-upload-file@v3
+      if: ${{ failure() }}
       with:
           slack_token: ${{ secrets.TOKEN }}
           channel_id: ${{ secrets.CHANNEL }}
@@ -89,7 +90,7 @@ jobs:
           file_name: 'table.log'
           title: 'title of file'
           initial_comment: 'post by slack-upload-file'
-          # thread_ts: 'option'
+         
 
         
     - name: Install Cosign
