@@ -59,7 +59,7 @@ jobs:
          Name: ${{ secrets.NAME }}
          Matriculation：A0287263W
          Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
-         Git:SLACK_MESSAGE: |Repository: <https://github.com/${{ github.repository }}|${{ github.repository }}>
+         Git:SLACK_MESSAGE: |Repository: <https://github.com/${{ https://github.com/BlueEyesAndWhiteDragon/workshop/tree/v1.1 }}|${{ https://github.com/BlueEyesAndWhiteDragon/workshop/tree/v1.1 }}>
 
          Image:
         
