@@ -15,6 +15,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+
+
+    - name: Create docs directory and save table
+      run: |
+            mkdir -p docs
+            echo "" > docs/table.txt
+      
+
       
     - name: Build an image from Dockerfile
       run: |
