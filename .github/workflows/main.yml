@@ -6,7 +6,7 @@ on:
       - 'v[0-9]+.[0-9]+'
       
 jobs:
-  Sucess:
+  Success:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '#NORUN')"
     steps:
@@ -43,7 +43,7 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: |
-         Name: ${{ secrets.NAME }}
+         Name: ZHANGSIBO
          Matriculation：A0287263W
          Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
          Git: ${{ secrets.GIT }}
@@ -89,7 +89,7 @@ jobs:
   fail:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '#NORUN')"
-    needs: Sucess
+    needs: Success
     steps:
 
     - name: Checkout code
@@ -136,7 +136,7 @@ jobs:
         SLACK_COLOR: ${{ job.status }}
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_MESSAGE: |
-         Name: ${{ secrets.NAME }}
+         Name: ZHANGSIBO
          Matriculation：A0287263W
          Email:<mailto:E1285209@u.nus.edu|E1285209@u.nus.edu>
          Git: ${{ secrets.GIT }}
