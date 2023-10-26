@@ -38,6 +38,14 @@ jobs:
           ignore-unfixed: false
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
+    - name: Set Trivy Scan Results as Output
+      if: ${{ failure() }}  
+      run: |
+        trivy_scan_results="$(trivy --format table --exit-code 1 --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH docker.io/my-organization/my-app:${{ github.sha }})"
+        echo "::set-output name=trivy_scan_results::$trivy_scan_results"
+
+
    
     - name: Save Trivy output to file
       if: ${{ failure() }}   
