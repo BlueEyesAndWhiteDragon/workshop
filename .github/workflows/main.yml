@@ -45,6 +45,7 @@ jobs:
        echo "${{ steps.table.outputs.stdout }}" > docs/table.txt
 
     - name: Print the content of the file
+      if: ${{ failure() }}
       run: cat docs/table.txt
 
       
